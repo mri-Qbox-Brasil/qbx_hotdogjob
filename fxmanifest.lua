@@ -7,6 +7,7 @@ version '1.0.0'
 ui_page 'html/ui.html'
 
 shared_scripts {
+    '@ox_lib/init.lua',
     '@qb-core/shared/locale.lua',
     'locales/en.lua',
     'locales/*.lua',
