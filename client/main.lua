@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local QBCore = exports['qbx-core']:GetCoreObject()
 local PlayerData = QBCore.Functions.GetPlayerData()
 local HotdogBlip = nil
 local IsWorking = false
@@ -893,7 +893,7 @@ CreateThread(function()
                 inZone = true
                 if PlayerData.job.name == 'hotdog' then
                     if not IsWorking then
-                        exports['qb-core']:DrawText(Lang:t("info.start_working"), 'left')
+                        exports['qbx-core']:DrawText(Lang:t("info.start_working"), 'left')
                         CreateThread(function()
                             while inZone do
                                 Wait(0)
@@ -903,7 +903,7 @@ CreateThread(function()
                             end
                         end)
                     else
-                        exports['qb-core']:DrawText(Lang:t("info.stop_working"), 'left')
+                        exports['qbx-core']:DrawText(Lang:t("info.stop_working"), 'left')
                         CreateThread(function()
                             while inZone do
                                 Wait(0)
@@ -916,7 +916,7 @@ CreateThread(function()
                 end
             else
                 inZone = false
-                exports['qb-core']:HideText()
+                exports['qbx-core']:HideText()
             end
         end)
     end
