@@ -35,7 +35,11 @@ local Translations = {
         admin_removed = "Hot Dog Stand Removed",
         label_a = "Perfect (A)",
         label_b = "Rare (B)",
-        label_c = "Common (C)"
+        label_c = "Common (C)",
+        toggle_work = "Toggle Work",
+        selling = "You are now selling hotdogs",
+        no_selling = "You are no longer selling hotdogs",
+        decline_offer = 'Decline offer',
     },
         keymapping = {
         gkey = 'Let go of hotdog stand',
