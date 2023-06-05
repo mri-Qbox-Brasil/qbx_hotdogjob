@@ -3,28 +3,29 @@ local Bail = {}
 
 -- Callbacks
 
-QBCore.Functions.CreateCallback('qb-hotdogjob:server:HasMoney', function(source, cb)
+lib.callback.register('qb-hotdogjob:server:HasMoney', function(source)
     local Player = QBCore.Functions.GetPlayer(source)
+    if not Player then return false end
 
     if Player.PlayerData.money.bank >= Config.StandDeposit then
         Player.Functions.RemoveMoney('bank', Config.StandDeposit)
         Bail[Player.PlayerData.citizenid] = true
-        cb(true)
+        return true
     else
         Bail[Player.PlayerData.citizenid] = false
-        cb(false)
+        return false
     end
 end)
 
-QBCore.Functions.CreateCallback('qb-hotdogjob:server:BringBack', function(source, cb)
+lib.callback.register('qb-hotdogjob:server:BringBack', function(source)
     local Player = QBCore.Functions.GetPlayer(source)
 
-    if Bail[Player.PlayerData.citizenid] then
+    if Player and Bail[Player.PlayerData.citizenid] then
         Player.Functions.AddMoney('bank', Config.StandDeposit)
-        cb(true)
-    else
-        cb(false)
+        return true
     end
+
+    return false
 end)
 
 -- Events
