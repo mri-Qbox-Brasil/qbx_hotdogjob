@@ -268,12 +268,12 @@ local function TakeHotdogStand()
     AnimLoop()
 end
 
-local function FinishMinigame(faults)
-    local Quality = "common"
-    if faults == 0 then
-        Quality = "exotic"
-    elseif faults == 1 then
-        Quality = "rare"
+local function FinishMinigame(success)
+    local Quality
+    if success then
+        Quality = 'exotic'
+    else
+        Quality = math.random(0, 10) <= 3 and 'rare' or 'common'
     end
     if Config.Stock[Quality].Current + 1 <= Config.Stock[Quality].Max[Config.MyLevel] then
         TriggerServerEvent('qb-hotdogjob:server:UpdateReputation', Quality)
@@ -300,8 +300,8 @@ end
 
 local function StartHotdogMinigame()
     PrepareAnim()
-    TriggerEvent('qb-keyminigame:show')
-    TriggerEvent('qb-keyminigame:start', FinishMinigame)
+    local success = lib.skillCheck({'easy', 'medium', 'hard'}, {'w', 'a', 's', 'd'})
+    FinishMinigame(success)
 end
 
 local function HotdogLoop()
