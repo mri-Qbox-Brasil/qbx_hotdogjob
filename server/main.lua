@@ -89,7 +89,7 @@ end)
 
 lib.addCommand('removestand', {
     help = Lang:t("info.command"),
-    restricted = "qbox.admin"
+    restricted = "admin"
 }, function(source)
     TriggerClientEvent('qb-hotdogjob:staff:DeletStand', source)
 end)
